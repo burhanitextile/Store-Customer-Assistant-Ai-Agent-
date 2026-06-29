@@ -13,12 +13,12 @@ from tools import TOOLS
 import time
 import streamlit as st
 
-try:
+#try:
     # Running on Streamlit Cloud
-    api_key = st.secrets["GEMINI_API_KEY"]
-except Exception:
+    #api_key = st.secrets["GEMINI_API_KEY"]
+#except Exception:
     # Running locally
-    api_key = os.getenv("GEMINI_API_KEY")
+    #api_key = os.getenv("GEMINI_API_KEY")
 
 
 # LOGGING SETUP
@@ -63,7 +63,7 @@ class AgentState(TypedDict):
 
 llm = ChatGoogleGenerativeAI(
     model="models/gemini-2.5-flash",
-    google_api_key=api_key
+    google_api_key=st.secrets["GEMINI_API_KEY"]
 )
 
 llm_with_tools = llm.bind_tools(TOOLS)
