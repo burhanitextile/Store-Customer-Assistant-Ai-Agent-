@@ -59,7 +59,8 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = run_agent(user_input)[0]
-            response = response["text"]
+            #response = response["text"]
         st.write(response)
+        st.write(type(response))
 
     st.session_state.messages.append({"role": "assistant", "content": response})
