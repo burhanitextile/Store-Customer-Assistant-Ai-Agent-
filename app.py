@@ -60,7 +60,12 @@ if user_input:
         with st.spinner("Thinking..."):
             response = run_agent(user_input)[0]
             #response = response["text"]
-        st.write(response)
-        st.write(type(response))
+            response = run_agent(user_input)[0]
+
+            if isinstance(response, dict):
+                response = response["text"]
+                
+            st.write(response)
+            #st.write(type(response))
 
     st.session_state.messages.append({"role": "assistant", "content": response})
