@@ -35,9 +35,9 @@ should_continue?               │
 END       [execute_tools] ─────┘
 ```
 
-- **call_llm** — Sends conversation to Claude. Claude decides which tool(s) to call.
+- **call_llm** — Sends conversation to gemini. gemini decides which tool(s) to call.
 - **execute_tools** — LangGraph's `ToolNode` executes the requested tools automatically.
-- **should_continue** — Routing function. If Claude made tool calls → loop back. If final answer → END.
+- **should_continue** — Routing function. If gemini made tool calls → loop back. If final answer → END.
 
 ---
 
@@ -59,9 +59,15 @@ streamlit run app.py
 
 ---
 
+## ⚠️ Note on Gemini API
+This project uses the Gemini free tier API key for demonstration purposes.
+If you encounter a quota error while testing, either:
+- Wait a few minutes and retry (free tier has per-minute limits)
+- Or you can put GOOGLE_API_KEY in .env with your own key from https://aistudio.google.co
+
 ## 🤖 Available Tools
 
-| Tool | When Claude uses it |
+| Tool | When gemini uses it |
 |------|-------------------|
 | `get_order(order_id)` | Customer asks about order status, shipping, ETA |
 | `search_products(query)` | Customer wants to browse or find alternatives |
@@ -99,11 +105,11 @@ Please double-check your order ID and try again.
 ## ✅ Features
 
 - **LangGraph state graph** — extensible, production-ready agent architecture
-- **Tool chaining** — Claude chains multiple tools automatically when needed
+- **Tool chaining** — Gemini chains multiple tools automatically when needed
 - **Error handling** — graceful responses for invalid orders, products, empty searches
 - **Logging** — every tool call logged with timestamp to `agent.log`
 - **Streamlit UI** — chat interface with sample questions and agent flow diagram
-- **LLM** — Claude (claude-sonnet-4-6) via LangChain-Anthropic
+- **LLM** — Gemini
 
 ---
 
