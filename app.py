@@ -58,12 +58,7 @@ if user_input:
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            response = run_agent(user_input)[0]
-            #response = response["text"]
-
-            if isinstance(response, dict):
-                response = response["text"]
-                
+            response = run_agent(user_input)
             st.write(response)
             #st.write(type(response))
 
