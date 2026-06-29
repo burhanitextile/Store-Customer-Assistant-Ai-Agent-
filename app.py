@@ -60,7 +60,6 @@ if user_input:
         with st.spinner("Thinking..."):
             response = run_agent(user_input)[0]
             #response = response["text"]
-            response = run_agent(user_input)[0]
 
             if isinstance(response, dict):
                 response = response["text"]
