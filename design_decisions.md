@@ -1,6 +1,6 @@
 # Design Decisions — Store Customer Support AI Agent
 
-**Stack:** Claude (claude-sonnet-4-6) + LangGraph + LangChain + Streamlit
+**Stack:** Gemini + LangGraph + LangChain + Streamlit
 
 ---
 
@@ -20,7 +20,7 @@ This is the difference between writing code that works and writing code that *la
 
 LangGraph requires explicit state definition. The `AgentState` uses `Annotated[list, add_messages]` for the messages field.
 
-`add_messages` is a **reducer** — instead of overwriting the message list on each node, it appends. This means the full conversation history is always preserved and passed to Claude on every LLM call, enabling natural multi-turn reasoning.
+`add_messages` is a **reducer** — instead of overwriting the message list on each node, it appends. This means the full conversation history is always preserved and passed to gemini on every LLM call, enabling natural multi-turn reasoning.
 
 ---
 
@@ -28,7 +28,7 @@ LangGraph requires explicit state definition. The `AgentState` uses `Annotated[l
 
 Tools are defined using LangChain's `@tool` decorator instead of raw JSON schemas. Benefits:
 
-- The **docstring becomes the tool description** Claude reads — clean and co-located with the function
+- The **docstring becomes the tool description** gemini reads — clean and co-located with the function
 - LangGraph's built-in `ToolNode` handles execution automatically — no manual routing needed
 - Type hints define the input schema — no separate JSON to maintain
 
@@ -42,7 +42,7 @@ LangGraph's `ToolNode` reads `tool_calls` from the last LLM message, finds the m
 
 ## 5. Error Handling at the Tool Level
 
-Each tool returns a structured `{"error": "..."}` dict on invalid input instead of raising exceptions. Claude reads this error and translates it into a polite customer-facing message — preventing hallucination and raw error dumps reaching the user.
+Each tool returns a structured `{"error": "..."}` dict on invalid input instead of raising exceptions. gemini reads this error and translates it into a polite customer-facing message — preventing hallucination and raw error dumps reaching the user.
 
 ---
 
