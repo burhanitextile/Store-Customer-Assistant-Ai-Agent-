@@ -158,7 +158,18 @@ def run_agent(question: str) -> str:
 
     final_state = app.invoke(initial_state)
 
-    final_answer = final_state["messages"][-1].content
+    #final_answer = final_state["messages"][-1].content
+    
+    content = final_state["messages"][-1].content
+
+    if isinstance(content, list):
+        final_answer = "".join(
+            item["text"]
+            for item in content
+            if item.get("type") == "text"
+            )
+    else:
+        final_answer = content
 
     logger.info(f"[AGENT END] {final_answer}")
     logger.info(f"{'=' * 60}")
