@@ -1,5 +1,5 @@
 # 🛍️ Store Customer Support AI Agent
-### Built with Claude + LangGraph
+### Built with Gemini + LangGraph
 
 An AI agent that answers customer questions about an online store — intelligently selecting tools, chaining them when required, and returning customer-friendly responses.
 
