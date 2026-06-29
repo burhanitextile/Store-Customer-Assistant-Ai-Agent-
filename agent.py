@@ -63,8 +63,8 @@ class AgentState(TypedDict):
 # LLM SETUP
 
 llm = ChatGoogleGenerativeAI(
-    # model="models/gemini-2.5-flash",
-    model = "models/gemini-2.5-pro",
+    model="models/gemini-2.5-flash",
+    # model = "models/gemini-2.5-pro",
     google_api_key=api_key
 )
 
